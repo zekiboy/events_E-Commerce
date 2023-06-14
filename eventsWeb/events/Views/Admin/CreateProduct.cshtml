@@ -1,0 +1,85 @@
+@model events.Models.ProductModel
+
+<h2>Create Product</h2>
+<hr>
+<div class="row">
+<div class="col-md-8">
+<form action="/Admin/CreateProduct" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group ">
+        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Name">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label  asp-for="Price" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Price">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group ">
+            <label  asp-for="Description" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <textarea id="Description" class="form-control" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="imgUrl">Image Url</label><br><br>
+        <div class="col-sm-10">
+            <input type="file" name="file">
+         </div>
+    </div>
+    <div class="form-group ">
+        <label asp-for="Location" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Location">
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="sittingUrl" class="col-sm-2 col-form-label">Sitting Url</label>
+        <div class="col-sm-10">
+        <input asp-for="sittingUrl" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Rules">Rules</label>
+        <div class="col-sm-10">
+        <input asp-for="Rules" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="eventDate" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="eventDate">
+        </div>
+        <span asp-validation-for="eventDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-danger mt-2">Add</button>  
+</form>
+</div>
+</div>
+
+
+
+@* layoutun altındaki ilgili kısım olmadan bura da çalışmıyor. ikisinin farkını kontrol et  *@
+@* @section Scripts
+{
+    <script src="/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+} *@
+
+ @section Scripts
+{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+} 

@@ -1,0 +1,26 @@
+@* @using mvcProje2.Models *@
+@model eventsWeb.entity.Product
+
+<div class="col-md-12 mb-3" style="text-align: center; " >
+    <div class="card" style="box-shadow: 1px 1px 3px  #888888; height:500px;" >
+        <img src="~/img/@Model.ImgUrl" class="card-img-top" style="height: 300px;">
+        <h5 class="card-title">@Model.Name</h5> 
+        <p class="card-text" style="height:100px; ">@Html.Raw(Model.Description)</p>
+        <i class="fa fa-turkish-lira">@Model.Price</i>
+        @* <a href="/events/detail/@Model.ProductId" class="btn btn-secondary" style="margin:5px;" >İncele</a> *@
+
+    <div class="card-body">
+        <a href="/events/detail/@Model.ProductId" class="btn btn-secondary btn-sm">İncele</a>
+
+        @if(User.Identity.IsAuthenticated)
+        {
+            <form asp-controller="Cart" asp-action="AddToCart" method="POST" style="display: inline;">
+                <input type="hidden" name="productId" value="@Model.ProductId">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn btn-secondary btn-sm">Karta Ekle</button>
+            </form>
+        }
+    </div>
+
+    </div>
+</div>

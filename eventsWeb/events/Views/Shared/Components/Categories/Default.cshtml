@@ -1,0 +1,8 @@
+<div class="list-group" style="box-shadow: 0px 0px 2px 1px #888888;">
+    @foreach (var Categories in Model)
+    {
+        @* <a asp-controller="mvcTic" asp-action="list" asp-route-id="@Categories.CategoryId" class="list-group-item-action @(ViewBag.SelectedCategory==Categories.CategoryId.ToString()?"active":"")">@Categories.Name</a> *@
+        <a href="http://localhost:5045/events/list/@Categories.CategoryId" class="list-group-item list-group-item-light  list-group-item-action @(ViewBag.SelectedCategory==@Categories.CategoryId.ToString()?"active":"")">@Categories.Name</a>
+
+    }
+</div>

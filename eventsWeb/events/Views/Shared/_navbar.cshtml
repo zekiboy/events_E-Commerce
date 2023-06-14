@@ -1,0 +1,110 @@
+
+@* <div class="container">  *@
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4" style="margin:10px; border-radius: 10px; box-shadow: 0px 0px 1px 1px  #888888;">
+  @* <h3 class="navbar-brand" href="#">EVENTs</h3> *@
+    @* <img src="~/img/logoEvent.png" style="height: 100px;" alt=""> *@
+    <a class="navbar-brand" href="/home/index">
+      <img
+        src="~/img/logoEvent.png"
+        height="100px"
+        loading="lazy"
+      />
+    </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto" >
+
+        <li class="nav-item">
+            <a href="/events/list" class="nav-link">Tüm Etkinlikler</a>
+        </li>
+
+
+        @* @if(User.Identity.IsAuthenticated) *@
+        @if(User.IsInRole("admin"))
+        {
+            <li class="nav-item">
+                <a href="/admin/productlist" class="nav-link">Adm Prod</a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/categorylist" class="nav-link">Adm Cat</a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/RoleList" class="nav-link">Roles</a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/UserList" class="nav-link">Users</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a href="/events/list/1" class="nav-link">Sahne</a>
+            </li>
+            <li class="nav-item">
+                <a href="/events/list/2" class="nav-link">Müzik</a>
+            </li>
+            <li class="nav-item">
+                <a href="/events/list/3" class="nav-link">Spor</a>
+            </li>
+            <li class="nav-item">
+                <a href="/events/list/4" class="nav-link">Diğer</a>
+            </li>
+        }
+
+    </ul>
+  </div>
+
+    <div class="row " style="margin-right:20px;">
+            <form action="/events/list" class="form-inline" style="display: flex; ">
+                <input name="q" type="text"  class="form-control mr-1 " placeholder="Etkinlik, Mekan, Şehir">
+                <button type="submit" class="btn btn-outline-secondary  mr-0" style="margin-left: 10px;">Ara</button>
+            </form>
+        </div>
+
+   <div class=" dropdown" style="margin-right: 50px;">
+        <ul class="navbar-nav ml-auto">
+
+            @if(User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item mt-2">
+                    <a class="text-reset me-3" href="/cart/index">
+                        <i class="fas fa-shopping-cart" ></i>
+                    </a>
+                </li> 
+
+                <li class="nav-item">
+                    <a href="/cart/index" class="nav-link">
+                        @User.Identity.Name
+                    </a>
+                </li>
+                 
+                <li class="nav-item">
+                    <a href="/account/logout" class="nav-link">Logout</a>
+                </li>
+            }
+            else
+            {
+
+                <li class="nav-item">
+                    <a href="/account/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/account/register" class="nav-link">Register</a>
+                </li>
+                <li class="nav-item">
+                    <img _ngcontent-serverapp-c110="" src="~/img//login.png" style="width: 20px; margin-top: 10px;">
+                </li> 
+            }
+
+
+
+        </ul>
+   </div>
+
+           
+</nav>
+@* </div>  *@

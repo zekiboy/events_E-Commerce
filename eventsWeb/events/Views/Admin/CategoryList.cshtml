@@ -1,0 +1,49 @@
+@model events.Models.CategoryListViewModel
+
+
+<h1>Admin Categories</h1>
+<hr>
+<b>Yeni Kategori Ekle: </b>
+<a href="/admin/CreateCategory" class="btn btn-success btn-sm">ADD</a>
+<br><br>
+<table class="table table-bordered">  
+    <thead>
+        <tr>
+            <td>Category ID</td>
+            <td>Name</td>
+            <td>App</td>
+  
+        </tr>
+        <tbody>
+           @if(Model.Categories.Count>0) 
+           {
+                @foreach (var item in Model.Categories)
+                {
+                    <tr>
+                        <td>@item.CategoryId</td>
+                        <td>@item.Name</td>    
+                        <td>
+                            <a href="/admin/EditCategory/@item.CategoryId" class="btn btn-primary btn-sm mr-2 ">Edit</a>
+                            <form action="/admin/deletecategory" method="POST" style="display: inline;">
+                                <input type="hidden" name="CategoryId" value="@item.CategoryId">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>                
+                } 
+           }
+           else
+           {
+                <div class="alert alert-warning">
+                    <h3>No Category</h3>    
+                </div>
+           }
+
+  
+        </tbody>
+    </thead>
+</table>
+
+
+
+

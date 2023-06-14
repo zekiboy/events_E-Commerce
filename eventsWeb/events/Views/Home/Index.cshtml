@@ -1,0 +1,151 @@
+
+  @* @await Html.PartialAsync("~/Views/Shared/_header.cshtml") *@
+
+@* SLİDER *@
+<div class="row" >
+     <!-- Slider içeriği -->
+     
+    <div id="mySlider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#mySlider" data-slide-to="0" class="active"></li>
+            <li data-target="#mySlider" data-slide-to="1"></li>
+            <li data-target="#mySlider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" style="box-shadow: 1px 0px 5px 2px  #888888; border-radius: 10px;">
+            <div class="carousel-item active" >
+              <a href="http://localhost:5045/events/detail/1">
+                <img src="~/img/futbol-slider.jpg" alt="Slider Resim 1">
+              </a>
+                <div class="carousel-caption">
+                    <h3>ŞAMPİYONLAR LİGİ FİNAL HEYECANI</h3>
+                    <p>Yaz boyu bütün futbol etkinlikleri için takipte kalın</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="http://localhost:5045/events/detail/1">
+                  <img src="~/img/slider-tiyatro.jpg" alt="Slider Resim 2">
+                </a>
+                <div class="carousel-caption">
+                    <h3>KÜLTÜR SANAT VE FAZLASI</h3>
+                    <p>Bu kadim şehiri kültürel etkinlikleri ile tanıyın..</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="http://localhost:5045/events/detail/1">
+                  <img src="~/img/slider-festival.jpg" alt="Slider Resim 3">
+                </a>
+                <div class="carousel-caption">
+                    <h3>FESTİVALLERLE EĞLENCENİN DİBİNE VUR</h3>
+                    <p>Yaz boyu İstanbul'un tadını müzikle çıkar..</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#mySlider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#mySlider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    @* slider aktif imleç *@
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</div>
+
+
+
+
+
+<h4 style="margin-top: 20px;"><b>Sahne</b></h4>
+<hr>
+         <div class="col-md-12">
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    for(int i=0; i<product.ProductCategories.Count;i++)
+                    {
+                        if(product.ProductCategories[i].CategoryId==1)
+                        {
+                            <div class="col-md-2"    style="box-shadow: 3px 3px 5px  #888888;"  >
+                                @await Html.PartialAsync("~/Views/Shared/_smallCard.cshtml", product)
+                            </div>
+                        }
+                    }          
+                }
+            </div>
+         </div>               
+
+<br>
+<h4 style="margin-top: 20px;"><b>Müzik</b></h4>
+ <hr>
+         <div class="col-md-12">
+            <div class="row" style="border-radius: 15px; ">
+                @foreach (var product in Model.Products)
+                {
+                    for(int i=0; i<product.ProductCategories.Count;i++)
+                    {
+                        if(product.ProductCategories[i].CategoryId==2)
+                        {
+                            <div class="col-md-2"  >
+                                @await Html.PartialAsync("~/Views/Shared/_smallCard2.cshtml", product)
+                            </div>
+                        }
+                    }          
+                }
+            </div>
+         </div>   
+
+<br>
+         <h4 style="margin-top: 20px;"><b>Sanat & Müze</b></h4>
+<hr>
+         <div class="col-md-12">
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    for(int i=0; i<product.ProductCategories.Count;i++)
+                    {
+                        if(product.ProductCategories[i].CategoryId==3)
+                        {
+                            <div class="col-md-2"    style="box-shadow: 3px 3px 5px  #888888;"  >
+                                @await Html.PartialAsync("~/Views/Shared/_smallCard.cshtml", product)
+                            </div>
+                        }
+                    }          
+                }
+            </div>
+
+ <br>
+
+
+
+         </div>           
+    @* </div> *@
+<br><br>
+<h3 style="margin-top: 20px;"><b>Tüm Etkinlikler</b></h3>
+<hr>
+
+
+   @model events.Models.ProductListViewModel
+    @* <div class="row">
+        <div class="col-md-2">
+            @await Component.InvokeAsync("Categories")
+        </div> *@
+         <div class="col-md-12">
+            <div class="row">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-3" >
+                        @await Html.PartialAsync("~/Views/Shared/_productCard.cshtml", product)
+                    </div>
+                }
+            </div>
+         </div>
+        

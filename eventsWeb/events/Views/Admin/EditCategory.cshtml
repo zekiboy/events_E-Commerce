@@ -1,0 +1,97 @@
+@model events.Models.CategoryModel
+
+<h2>Edit Category</h2>
+<hr>
+<p><b>Category ID: </b>@Model.CategoryId</p>
+<p><b>Name: </b> @Model.Name</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Admin/EditCategory" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" name="CategoryId" value="@Model.CategoryId">
+            <div class="form-group col-md-4">
+                <input type="text" name="Name" id="Name" class="form-control" placeholder="New Name">
+                <div class="col-sm-10">
+                    <input type="hidden" class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Edit Category</button>
+
+            <div id="products">
+                @for (int i = 0; i < Model.Products.Count; i++)
+                {
+                    <input type="hidden" name="Products[@i].productId" value="@Model.Products[@i].ProductId">
+                    <input type="hidden" name="Products[@i].ImgUrl" value="@Model.Products[@i].ImgUrl">
+                    <input type="hidden" name="Products[@i].Name" value="@Model.Products[@i].Name">
+                    <input type="hidden" name="Products[@i].Price" value="@Model.Products[@i].Price">
+                    <input type="hidden" name="Products[@i].Description" value="@Model.Products[@i].Description">
+                    <input type="hidden" name="Products[@i].Location" value="@Model.Products[@i].Location">
+                    <input type="hidden" name="Products[@i].eventDate" value="@Model.Products[@i].eventDate">
+                }
+            </div>
+        </form>
+
+
+
+    </div>
+
+    <div class="col-md-8">
+  
+        <table class="table table-bordered ">  
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Image</td>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>Date</td>
+                    <td>Location</td>
+                    <td>Description</td>
+                    <td>İşlem</td>
+
+                </tr>
+                <tbody>
+                @if(Model.Products.Count>0) 
+                {
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td>@item.ProductId</td>
+                                <td><img src="~/img/@item.ImgUrl" width="80"></td>
+                                <td>@item.Name</td>
+                                <td class="fa fa-turkish-lira">@item.Price</td>
+                                <td>@item.eventDate</td>
+                                <td>@item.Location</td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <a href="/admin/EditProduct/@item.ProductId" class="btn btn-primary btn-sm mr-2 mb-2">Edit</a>
+                                    <form action="/admin/DeleteFromCategory" method="POST" style="display: inline;">
+                                        <input type="hidden" name="productId" value="@item.ProductId">
+                                        <input type="hidden" name="categoryId" value="@Model.CategoryId">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>                
+                        } 
+                }
+                else
+                {
+                        <div class="alert alert-warning">
+                            <h3>No Product</h3>    
+                        </div>
+                }
+
+        
+                </tbody>
+            </thead>
+        </table>
+   <b> NOT:Bu sayfadaki delete butunu, ürünün kategori ile olan ilişkisini siler</b>
+    </div>
+ 
+
+
+</div>
+

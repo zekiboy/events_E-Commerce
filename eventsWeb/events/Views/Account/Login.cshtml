@@ -1,0 +1,49 @@
+@model events.Models.LoginModel
+
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form action="/Account/Login" method="post" >
+          <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl">
+          <div asp-validation-summary="All" class="text-danger"></div>
+          
+          @* <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email"  asp-for="Email" class="form-control" />
+            <label class="form-label" asp-for="Email">Your Email</label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+          </div> *@
+
+
+          <div class="form-outline mb-4">
+            <input type="text" asp-for="UserName" class="form-control" />
+            <label class="form-label"  asp-for="UserName">User Name</label>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" asp-for="Password" class="form-control" />
+            <label class="form-label" asp-for="Password">Password</label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+          </div>
+
+          <!-- Submit button -->
+
+          <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="/account/forgotpassword" class="btn btn-link">Şifremi Unuttum</a>
+            </div>
+        </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

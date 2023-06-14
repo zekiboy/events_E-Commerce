@@ -1,0 +1,13 @@
+@model events.Models.CategoryModel
+
+<h2>Create Category</h2>
+<hr>
+<form action="/Admin/CreateCategory" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group col-md-3">
+            <label for="Name">Name: </label>
+            <input type="text" name="Name" id="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Add</button>
+</form>
